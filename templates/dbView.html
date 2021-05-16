@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+<title>pyGallery</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="content">
+    <h1>pyGallery</h1>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>picName</th>
+            <th>tags</th>
+            <th>dateUploaded</th>
+            <th>uploadedBy</th>
+        </tr>
+        {% for pic in gallery %}
+            <tr>
+                <td>{{ pic.id }}</td>
+                <td>{{ pic.picName }}</td>
+                <td>{{ pic.tags }}</td>
+                <td>{{ pic.dateUploaded.date() }}</td>
+                <td>{{ pic.uploadedBy }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

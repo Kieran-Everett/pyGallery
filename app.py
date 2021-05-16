@@ -35,10 +35,19 @@ def index():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST' and 'photo' in request.files:
+
+        #pic_picName = 
+        
         photos.save(request.files['photo'])
         flash('Photo saved successfully')
         return render_template('upload.html')
     return render_template('upload.html')
+
+
+@app.route('/dbView')
+def dbView():
+    gallery = Gallery.query.order_by(Gallery.id).all()
+    return render_template('dbView.html', gallery=gallery)
 
 
 if __name__ == "__main__":
