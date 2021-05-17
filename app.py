@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gallery.db'
 db = SQLAlchemy(app)
 
 photos = UploadSet('photos', IMAGES)
-app.config['UPLOADED_PHOTOS_DEST'] = 'data/'
+app.config['UPLOADED_PHOTOS_DEST'] = 'static/data/'
 app.config['SECRET_KEY'] = os.urandom(24)
 configure_uploads(app, photos)
 
