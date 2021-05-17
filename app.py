@@ -41,8 +41,17 @@ def upload():
         pic_tags = "" # saved like a csv probably
         pic_uploadedBy = "testUser" # hardcoding stuff temporarily
 
-        flash('Photo saved successfully')
-        return render_template('upload.html')
+        new_pic = Gallery(picName=pic_picName, tags=pic_tags, uploadedBy=pic_uploadedBy)
+
+        try:
+            db.session.add(new_pic)
+            db.session.commit()
+            flash('Photo saved successfully')
+            return render_template('upload.html')
+        except:
+            flash('Photo upload failed')
+            return render_template('upload.html')
+        
     return render_template('upload.html')
 
 
