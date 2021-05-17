@@ -20,6 +20,7 @@
             <th>tags</th>
             <th>dateUploaded</th>
             <th>uploadedBy</th>
+            <th>image</th>
         </tr>
         {% for pic in gallery %}
             <tr>
@@ -28,6 +29,7 @@
                 <td>{{ pic.tags }}</td>
                 <td>{{ pic.dateUploaded.date() }}</td>
                 <td>{{ pic.uploadedBy }}</td>
+                <td><img src="{{ url_for('static', filename='data/'+pic.picName) | safe}}"></td>
             </tr>
         {% endfor %}
     </table>
