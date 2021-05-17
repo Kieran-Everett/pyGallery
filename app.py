@@ -36,9 +36,11 @@ def index():
 def upload():
     if request.method == 'POST' and 'photo' in request.files:
 
-        #pic_picName = 
-        
-        photos.save(request.files['photo'])
+        # really fancy, saves the photo (adding a '_n' if file already exists) and returns the name of the photo... i should really read things before spending an hour trying to get the name of the file through other methods
+        pic_picName = photos.save(request.files['photo'])
+        pic_tags = "" # saved like a csv probably
+        pic_uploadedBy = "testUser" # hardcoding stuff temporarily
+
         flash('Photo saved successfully')
         return render_template('upload.html')
     return render_template('upload.html')
