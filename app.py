@@ -61,5 +61,11 @@ def dbView():
     return render_template('dbView.html', gallery=gallery)
 
 
+@app.route('/image/<int:id>')
+def image(id):
+    imageToShow = Gallery.query.get_or_404(id)
+    return render_template('image.html', pic=imageToShow)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
