@@ -29,7 +29,7 @@
                 <td>{{ pic.tags }}</td>
                 <td>{{ pic.dateUploaded.date() }}</td>
                 <td>{{ pic.uploadedBy }}</td>
-                <td><img src="{{ url_for('static', filename='data/'+pic.picName) | safe}}"></td>
+                <td><img src="{{ url_for('static', filename='data/'+pic.picName)}}"></td>
             </tr>
         {% endfor %}
     </table>
