@@ -60,7 +60,27 @@ def upload():
 @app.route('/dbView')
 def dbView():
     gallery = Gallery.query.order_by(Gallery.id).all()
+    #gallery = Gallery.query.filter(Gallery.tags.contains('m')).all()
     return render_template('dbView.html', gallery=gallery)
+
+
+@app.route('/search')
+def search():
+    if 'query' in request.args:
+        searchTerms = request.args['query']
+    else:
+        return 'Error: enter a valid search term' # maybe replace with search box
+    
+    gallery = []
+    for term in searchTerms.split(','):
+        for pic in Gallery.query.filter(Gallery.tags.contains(term)).all():
+            gallery.append(pic)
+    
+    gallery = list(dict.fromkeys(gallery)) # removing dupes through python weirdness
+    
+    #gallery = Gallery.query.filter(Gallery.tags.contains(searchTerms)).all()
+
+    return render_template('dbView.html', gallery=gallery) # replace with custom template
 
 
 @app.route('/image')
