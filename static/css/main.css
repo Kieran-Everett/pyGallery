@@ -17,3 +17,7 @@ body {
 table, th, td {
     border: 1px solid white;
 }
+
+.navigation h1 {
+    text-align: center;
+}
