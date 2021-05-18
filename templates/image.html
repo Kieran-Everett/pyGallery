@@ -19,8 +19,8 @@
     <p>Tags: {{ pic.tags }}</p>
 
     <br>
-    <a href="/image/{{ pic.id-1 }}"><button>Previous</button></a>
-    <a href="/image/{{ pic.id+1 }}"><button>Next</button></a>
+    <a href="/image?id={{ pic.id-1 }}"><button>Previous</button></a>
+    <a href="/image?id={{ pic.id+1 }}"><button>Next</button></a>
 </div>
 
 {% endblock %}
