@@ -12,17 +12,16 @@
 
 <div class="content">
     <h1>pyGallery</h1>
-
-    <img src="{{ url_for('static', filename='data/'+pic.picName)}}">
-    <br>
-
-    <p>Tags: {{ pic.tags }}</p>
-    <br>
-    <a href="/updateTags?id={{ pic.id }}"><button>Update Tags</button></a>
-
-    <br>
+    
     <a href="/image?id={{ pic.id-1 }}"><button>Previous</button></a>
     <a href="/image?id={{ pic.id+1 }}"><button>Next</button></a>
+    
+    <div class="center">
+        <img src="{{ url_for('static', filename='data/'+pic.picName)}}">
+    </div>
+
+    <p>Tags: {{ pic.tags }}</p>
+    <a href="/updateTags?id={{ pic.id }}"><button>Update Tags</button></a>
 </div>
 
 {% endblock %}
