@@ -19,7 +19,7 @@
             <th>picName</th>
             <th>tags</th>
             <th>dateUploaded</th>
-            <th>uploadedBy</th>
+            <!--<th>uploadedBy</th>-->
             <th>image</th>
         </tr>
         {% for pic in gallery %}
@@ -28,7 +28,7 @@
                 <td>{{ pic.picName }}</td>
                 <td>{{ pic.tags }}</td>
                 <td>{{ pic.dateUploaded.date() }}</td>
-                <td>{{ pic.uploadedBy }}</td>
+                <!--<td>{{ pic.uploadedBy }}</td>-->
                 <td><a href="/image?id={{ pic.id }}"><img src="{{ url_for('static', filename='data/'+pic.picName)}}"></a></td>
             </tr>
         {% endfor %}
