@@ -61,8 +61,16 @@ def dbView():
     return render_template('dbView.html', gallery=gallery)
 
 
-@app.route('/image/<int:id>')
-def image(id):
+@app.route('/image')
+def image():
+    if 'id' in request.args:
+        try:
+            id = int(request.args['id'])
+        except:
+            return 'Error: invalid id'
+    else:
+        return 'Error: no provided id'
+    
     imageToShow = Gallery.query.get_or_404(id)
     return render_template('image.html', pic=imageToShow)
 
