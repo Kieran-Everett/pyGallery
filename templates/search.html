@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+<title>pyGallery</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="content">
+    <h1>pyGallery</h1>
+
+    <table>
+        <colgroup>
+            <col style="width:40%">
+            <col>
+            <col>
+        </colgroup>
+        <tr>
+            <th>Image</th>
+            <th>ID</th>
+            <th>Tags</th>
+        </tr>
+        {% for pic in gallery %}
+            <tr>
+                <td><a href="/image?id={{ pic.id }}"><img src="{{ url_for('static', filename='data/'+pic.picName)}}" style="width:100%"></a></td>
+                <td>{{ pic.id }}</td>
+                <td>{{ pic.tags }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
