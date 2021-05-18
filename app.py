@@ -5,6 +5,8 @@ from flask import Flask, render_template, request, flash
 from flask_uploads import IMAGES, UploadSet, configure_uploads
 from flask_sqlalchemy import SQLAlchemy
 
+from werkzeug.utils import redirect
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gallery.db'
@@ -70,9 +72,33 @@ def image():
             return 'Error: invalid id'
     else:
         return 'Error: no provided id'
-    
+
     imageToShow = Gallery.query.get_or_404(id)
     return render_template('image.html', pic=imageToShow)
+
+
+@app.route('/updateTags', methods=['GET', 'POST'])
+def updateTags():
+    if 'id' in request.args:
+        try:
+            id = int(request.args['id'])
+        except:
+            return 'Error: invalid id'
+    else:
+        return 'Error: no provided id'
+    
+    imageToChange = Gallery.query.get_or_404(id)
+
+    if request.method == 'POST':
+        imageToChange.tags = request.form['tags']
+
+        try:
+            db.session.commit()
+            return redirect('/image?id='+str(id))
+        except:
+            return 'Error: there was an issue updating the tags'
+    else:
+        return render_template('updateTags.html', pic=imageToChange)
 
 
 if __name__ == "__main__":
