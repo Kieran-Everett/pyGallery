@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+<title>pyGallery</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="content">
+    <h1>pyGallery</h1>
+
+    <img src="{{ url_for('static', filename='data/'+pic.picName)}}">
+    <br>
+
+    <p>Current tags: {{ pic.tags }}</p>
+
+    <br>
+    <form action="/updateTags?id={{ pic.id }}" method="POST">
+        <input type="text" name="tags" id="tags" value="{{ pic.tags }}">
+        <input type="submit" value="Update">
+    </form>
+</div>
+
+{% endblock %}
