@@ -56,7 +56,7 @@ def upload():
         # really fancy, saves the photo (adding a '_n' if file already exists) and returns the name of the photo... i should really read things before spending an hour trying to get the name of the file through other methods
         pic_picName = photos.save(request.files['photo'])
         pic_tags = "" # saved like a csv probably
-        pic_uploadedBy = "testUser" # hardcoding stuff temporarily
+        pic_uploadedBy = request.remote_addr # hardcoding stuff temporarily
 
         new_pic = Gallery(picName=pic_picName, tags=pic_tags, uploadedBy=pic_uploadedBy)
 
