@@ -79,12 +79,17 @@ def dbView():
     return render_template('dbView.html', gallery=gallery)
 
 
-@app.route('/search')
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     if 'query' in request.args:
         searchTerms = request.args['query']
     else:
-        return 'Error: enter a valid search term' # maybe replace with search box
+        if request.method == 'POST':
+            return redirect('/search?query='+request.form['searchTerm'])
+        else:
+            return render_template('searchBox.html')
+
+        #return 'Error: enter a valid search term' # maybe replace with search box
     
     gallery = []
     for term in searchTerms.split(','):
