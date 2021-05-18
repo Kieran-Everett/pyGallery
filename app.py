@@ -100,7 +100,7 @@ def search():
     
     #gallery = Gallery.query.filter(Gallery.tags.contains(searchTerms)).all()
 
-    return render_template('dbView.html', gallery=gallery) # replace with custom template
+    return render_template('search.html', gallery=gallery) # replace with custom template
 
 
 @app.route('/image')
