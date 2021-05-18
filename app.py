@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, abort
 from flask_uploads import IMAGES, UploadSet, configure_uploads
 from flask_sqlalchemy import SQLAlchemy
 
@@ -27,6 +27,21 @@ class Gallery(db.Model):
 
     def __repr__(self):
         return '<Picture %r>' % self.id
+
+
+# A very bad way of filtering users because I couldn't work out how to do proper users
+@app.before_request
+def limit_remote_addr():
+
+    file = open('authorized_ips.txt')
+    ips = file.read().split(',')
+    file.close()
+
+    for ip in ips:
+        if ip == request.remote_addr:
+            break
+    else:
+        abort(403) # not whitelisted ip
 
 
 @app.route('/')
